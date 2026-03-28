@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Container: full-screen centered ── */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d0d0f;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(233, 69, 96, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(15, 52, 96, 0.15) 0%, transparent 60%);
+  font-family: 'DM Sans', sans-serif;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle grid texture */
+.login-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.login-cart {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #16161a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 48px 40px 40px;
+  box-shadow:
+    0 0 0 1px rgba(233, 69, 96, 0.06),
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* top accent bar */
+.login-cart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e94560, transparent);
+  border-radius: 0 0 2px 2px;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Brand heading inside card ── */
+.login-cart::after {
+  content: 'SHOPZONE';
+  display: block;
+  position: absolute;
+  top: 28px;
+  left: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #e94560;
+}
+
+/* ── Form ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+/* heading — add this h2 inside .login-cart above the form for best results */
+.login-form h2,
+.login-cart h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #f0ede8;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+/* ── Field wrapper ── */
+.login-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  animation: fieldIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-form > div:nth-child(1) { animation-delay: 0.1s; }
+.login-form > div:nth-child(2) { animation-delay: 0.18s; }
+
+@keyframes fieldIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Labels ── */
+.login-form label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7a8a;
+}
+
+/* ── Inputs ── */
+.login-form input {
+  width: 100%;
+  padding: 13px 16px;
+  background: #1e1e24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #f0ede8;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  caret-color: #e94560;
+}
+
+.login-form input::placeholder {
+  color: #3e3e4e;
+}
+
+.login-form input:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: #212128;
+}
+
+.login-form input:focus {
+  border-color: rgba(233, 69, 96, 0.5);
+  background: #1e1e27;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+/* ── Submit Button ── */
+.login-form button[type='submit'] {
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  background: #e94560;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.35);
+  animation: fieldIn 0.45s 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-form button[type='submit']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.login-form button[type='submit']:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(233, 69, 96, 0.45);
+}
+
+.login-form button[type='submit']:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.login-form button[type='submit']:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* loading shimmer when disabled */
+.login-form button[type='submit']:disabled::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  to { left: 100%; }
+}
+
+/* ── Register link ── */
+.login-cart > p {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: #5a5a6e;
+  animation: fieldIn 0.45s 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-cart > p a {
+  color: #e94560;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 4px;
+  position: relative;
+  transition: opacity 0.15s;
+}
+
+.login-cart > p a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #e94560;
+  transition: width 0.2s ease;
+}
+
+.login-cart > p a:hover {
+  opacity: 0.8;
+}
+
+.login-cart > p a:hover::after {
+  width: 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .login-cart {
+    padding: 40px 24px 32px;
+    border-radius: 16px;
+  }
+
+  .login-cart::after {
+    left: 24px;
+  }
+
+  .login-cart::before {
+    left: 24px;
+    right: 24px;
+  }
+}
