@@ -117,6 +117,7 @@ export default function Navbar() {
                 fontWeight: 500,
                 fontSize: "14px"
               }}
+              onClick={()=> navigate("/cart")}
             >
               <FiShoppingCart size={17} />
               Cart
@@ -201,3 +202,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

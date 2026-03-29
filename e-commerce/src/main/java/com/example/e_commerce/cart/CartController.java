@@ -21,7 +21,6 @@ public class CartController {
     @Autowired
     private CartService service;
 
-    // ✅ Add
     @PostMapping("/add")
     public Cart add(@RequestParam Long productId,
                     Authentication auth) {
@@ -30,7 +29,6 @@ public class CartController {
         return service.addToCart(username, productId);
     }
 
-    // ✅ Remove
     @DeleteMapping("/remove")
     public Cart remove(@RequestParam Long productId,
                        Authentication auth) {
@@ -39,7 +37,6 @@ public class CartController {
         return service.removeItem(username, productId);
     }
 
-    // ✅ Update
     @PutMapping("/update")
     public Cart update(@RequestParam Long productId,
                        @RequestParam int qty,
@@ -49,14 +46,10 @@ public class CartController {
         return service.updateQty(username, productId, qty);
     }
 
-    // ✅ View Cart
     @GetMapping("/my")
     public CartResponseDTO view(Authentication auth) {
 
         String username = auth.getName();
         return service.viewCart(username);
     }
-
-
-   
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.e_commerce.dto.ProductResponse;
-import com.example.e_commerce.entity.Product;
 import com.example.e_commerce.repository.ProductRepository;
 import com.example.e_commerce.service.ProductService;
 

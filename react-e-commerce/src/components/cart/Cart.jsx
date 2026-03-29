@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import { getCart, removeItem, updateQty } from "../api/cartApi";
 import "./Cart.css";
+import { order } from "../api/orderApi";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cartID, setCartId]  = useState(0);
 
   const fetchCart = async () => {
     const res = await getCart();
     setCart(res.data.items);
+    setCartId(res.data.id)
     setLoading(false);
   };
+
+  const PlaceOrder = async ()=>{
+
+
+     const res = await order(cartID);
+     console.log(res);
+     alert(res.data);
+  }
 
   useEffect(() => {
     fetchCart();
@@ -127,7 +138,7 @@ function Cart() {
                 {total.toLocaleString("en-IN",{style:"currency",currency:"INR"})}
               </span>
             </div>
-            <button className="checkout-btn">Proceed to Checkout →</button>
+            <button className="checkout-btn" onClick={PlaceOrder} >Proceed to Checkout →</button>
           </div>
         </>
       )}

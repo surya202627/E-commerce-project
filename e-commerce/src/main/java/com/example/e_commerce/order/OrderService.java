@@ -25,7 +25,7 @@ public class OrderService {
         Cart cart = cartRepository.findById(cartId).orElseThrow();
 
         // 2. Create Order
-        Order order = new Order();
+        Orders order = new Orders();
         order.setUserId(cart.getId());
         order.setStatus("PLACED");
 
@@ -39,12 +39,11 @@ public class OrderService {
             oi.setProductName(ci.getProduct().getName());
             oi.setQuantity(ci.getQuantity());
 
-            oi.setOrder(order);   // link
+            oi.setOrder(order);  
 
             orderItems.add(oi);
 
-            // calculate total (example)
-            total += ci.getQuantity() * 1000; // dummy price
+            total += ci.getQuantity() * Integer.parseInt(ci.getProduct().getPrice());
         }
 
         order.setItems(orderItems);

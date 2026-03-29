@@ -11,8 +11,6 @@ import com.example.e_commerce.cart.dto.CartResponseDTO;
 import com.example.e_commerce.entity.Product;
 import com.example.e_commerce.repository.ProductRepository;
 
-
-
 @Service
 public class CartService {
 
@@ -46,8 +44,7 @@ public class CartService {
 
         if (existing.isPresent()) {
             existing.get().setQuantity(
-                existing.get().getQuantity() + 1
-            );
+                    existing.get().getQuantity() + 1);
         } else {
             CartItem item = new CartItem();
             item.setProduct(product);
@@ -66,8 +63,7 @@ public class CartService {
         Cart cart = getCart(username);
 
         cart.getItems().removeIf(
-                i -> i.getProduct().getId().equals(productId)
-        );
+                i -> i.getProduct().getId().equals(productId));
 
         return cartRepo.save(cart);
     }
@@ -88,39 +84,28 @@ public class CartService {
 
     // ✅ View Cart
     public CartResponseDTO viewCart(String username) {
-        Cart cart =  getCart(username);
+        Cart cart = getCart(username);
 
         return mapToDTO(cart);
     }
 
-
-    // get all cartItems
-
-    // public List<Cart> takeCartItems(){
-
-    //     return cartRepo.findAll();
-    // }
-
-
     public CartResponseDTO mapToDTO(Cart cart) {
 
-    CartResponseDTO dto = new CartResponseDTO();
-    dto.setId(cart.getId());
-    dto.setUsername(cart.getUsername());
+        CartResponseDTO dto = new CartResponseDTO();
+        dto.setId(cart.getId());
+        dto.setUsername(cart.getUsername());
 
-    List<CartItemDTO> items = cart.getItems().stream().map(item -> {
-        CartItemDTO i = new CartItemDTO();
-        i.setId(item.getId());
-        i.setProduct(item.getProduct());
-        i.setQuantity(item.getQuantity());
-        return i;
-    }).toList();
+        List<CartItemDTO> items = cart.getItems().stream().map(item -> {
+            CartItemDTO i = new CartItemDTO();
+            i.setId(item.getId());
+            i.setProduct(item.getProduct());
+            i.setQuantity(item.getQuantity());
+            return i;
+        }).toList();
 
-    dto.setItems(items);
+        dto.setItems(items);
 
-    return dto;
-}
-
-
+        return dto;
+    }
 
 }
